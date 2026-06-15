@@ -1,0 +1,6 @@
+{
+  "name": "feature-gate",
+  "description": "Gate a feature through TDD tests, security review, code review and optimization before commit. Generates a Markdown QA test-case sheet, runs it in a real browser, and halts on the first failure.",
+  "version": "0.1.0",
+  "license": "MIT"
+}
