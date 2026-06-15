@@ -52,20 +52,49 @@ Hardened during code review and covered by the test suite:
 
 ## Install
 
-Per session (dev):
+`feature-gate` is the **plugin** name and `local-tools` is the **marketplace** name (both
+defined in `.claude-plugin/marketplace.json`). Installs persist across sessions, so once
+installed the commit gate and lint hooks are active in every project.
+
+### For your team (recommended)
+
+This repo is a self-contained marketplace, so teammates install it straight from GitHub —
+no shared filesystem path required. Run these inside Claude Code:
+
+```
+/plugin marketplace add janvid2025/feature-gate-plugin
+/plugin install feature-gate@local-tools
+```
+
+Update later with `/plugin marketplace update local-tools`, then restart Claude Code.
+
+### From a local clone
+
+Point `marketplace add` at the **repo root** — the directory that *contains* `.claude-plugin/`,
+not the `.claude-plugin/` folder itself:
+
+```
+/plugin marketplace add /path/to/feature-gate-plugin
+/plugin install feature-gate@local-tools
+```
+
+### Per session only (quick dev / testing)
+
+Load the plugin for the current session without installing it:
 
 ```bash
 claude --plugin-dir /path/to/feature-gate-plugin
 ```
 
-Globally (hooks active in every session) via the bundled local marketplace:
+### Verify it loaded
 
-```
-/plugin marketplace add /path/to/feature-gate-plugin/.claude-plugin
-/plugin install feature-gate@local-tools
+```bash
+claude plugin list                                # feature-gate@local-tools, enabled
+claude plugin details feature-gate@local-tools    # inventory: 3 skills + 2 hooks
 ```
 
-Verify it loaded: `/help` (lists the skills), `/hooks` (lists the PreToolUse/PostToolUse hooks).
+Or run `/plugin` in a session and open the **Installed** tab; the three skills then appear
+in the skills list and the PreToolUse/PostToolUse hooks show under `/hooks`.
 
 ## Tests
 
