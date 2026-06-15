@@ -1,0 +1,7 @@
+{
+  "name": "local-tools",
+  "owner": { "name": "local" },
+  "plugins": [
+    { "name": "feature-gate", "source": "./", "description": "Feature quality gate pipeline" }
+  ]
+}
